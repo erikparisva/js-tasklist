@@ -24,6 +24,10 @@ function addTask(event){
     link.innerHTML = '✗';
     li.appendChild(link);
     taskList.appendChild(li);
+
+    taskInput.value = "";
+    storeInLocalStorage(taskInput.value);
+
     event.preventDefault();
 }
 function removeTask(event){
@@ -51,4 +55,14 @@ function filterTasks(event){
             text.style.display = 'none';
         }
     }
+}
+function storeInLocalStorage(){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        task = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+    }
+    tasks.push(task);
+    localStorage.setItem('tasks',JSON.stringify(tasks));
 }
